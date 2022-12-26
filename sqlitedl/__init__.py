@@ -8,14 +8,20 @@ class create:
 			self.conn = sqlite3.connect(file)
 			self.c = self.conn.cursor()
 		else: raise NameError(f'Invalid file: {file}')
-	def db(self, name, key, settings):
+	def db(self, name, key, variables):
+		assert_type(name, 'TableName', str)
+		assert_type(key, 'KeyName', str)
+		assert_type(variables, 'variables', str)
+		if name == '': raise ValueError('TableName is empty!')
+		if key == '': raise ValueError('KeyName is empty!')
+		if variables == '': raise ValueError('variables is empty!')
 		self.c.execute(f'''CREATE TABLE {name}
-			({key} PRIMARY KEY, {settings})''')
+			({key} PRIMARY KEY, {variables})''')
 	def line(self, name, variable, values):
-		if name is None: raise ValueError('TableName is NoneType!')
-		if variable is None: raise ValueError('Variable is NoneType!')
-		if None in values: raise ValueError('Values have NoneType object!')
-
+		assert_type(name, 'TableName', str)
+		assert_type(variable, 'variable', str)
+		if name == '': raise ValueError('TableName is empty!')
+		if variable == '': raise ValueError('variable is empty!')
 		args = variable.split(', ')
 		val = ''
 		for i in range(len(args)):
