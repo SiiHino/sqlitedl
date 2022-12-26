@@ -2,9 +2,6 @@ import sqlite3
 def assert_type(var, name, types):
 	if type(var) != types:
 		raise ValueError(f'invalid type: {name} is not {types} but {type(var)}')
-def variable_type(self_ref):
-	var = self_ref.update_ref.c.execute(f'SELECT {self_ref.var} FROM {self_ref.update_ref.table_name} WHERE {self_ref.update_ref.key} = ?', (self_ref.key_val, )).fetchone()
-	return type(var[0])
 class create:
 	def __init__(self, file):
 		if file.endswith('.db'):
@@ -30,8 +27,11 @@ class Reference:
 		self.update_ref = update_ref
 		self.key_val = key_value
 		self.var = variable_name
+	def variable_type(self_ref):
+		var = self_ref.update_ref.c.execute(f'SELECT {self_ref.var} FROM {self_ref.update_ref.table_name} WHERE {self_ref.update_ref.key} = ?', (self_ref.key_val, )).fetchone()
+		return type(var[0])
 	def updatevalue(self, oper, change):
-		assert_type(change, 'change', variable_type(self))
+		assert_type(change, 'change', self.variable_type(self))
 		if oper in ('*', '+', '/', '-'):
 			self.update_ref.c.execute(f'UPDATE {self.update_ref.table_name} SET {self.var} = {self.var} {oper} ? WHERE {self.update_ref.key} = ?', (change, self.key_val))
 		elif oper == 'set':
