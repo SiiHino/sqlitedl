@@ -39,7 +39,7 @@ db_update.charvar('hyundai tucson', 'model', 'hyundai solaris')
 #name = get(FileName, table_name)
 db_get = get('data.db', 'cars')
 
-#use the function get.line to get a database row by a key value (returns a list)
+#use the function get.line to get a database row by a key value (returns a list!)
 #name = get.line(key_name, key_value)
 model = db_get.line('model', 'hyundai solaris')
 print(model[0])

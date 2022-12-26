@@ -43,7 +43,6 @@ class update:
 	def charvar(self, key, variable, change):
 		self.c.execute(f'UPDATE {self.name} SET {variable} = ? WHERE {self.key} = ?', (change, key))
 		self.conn.commit()
-
 class get:
 	def __init__(self, file, name):
 		self.conn = sqlite3.connect(file)
