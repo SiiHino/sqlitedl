@@ -1,5 +1,7 @@
 import sqlite3
-
+def assert_type(var, name, types):
+	if type(var) != types:
+		raise ValueError(f'invalid type: {name} is not {types} but {type(var)}')
 class create:
 	def __init__(self, file):
 		if file.endswith('.db'):
@@ -29,6 +31,9 @@ class update:
 			self.key = key
 		else: raise NameError(f'Invalid file: {file}')
 	def intvar(self, key, variable, mode, change):
+		assert_type(change, 'change', int)
+		assert_type(key, 'key', str)
+		assert_type(variable, 'variable', str)
 		if mode == 'set':
 			self.c.execute(f'UPDATE {self.name} SET {variable} = ? WHERE {self.key} = ?', (change, key))
 		elif mode in ('*', '/', '+', '-'):
@@ -47,4 +52,6 @@ class get:
 			self.name = name
 		else: raise NameError(f'Invalid file: {file}')
 	def line(self, key, key_value):
+		assert_type(key, 'key', str)
+		assert_type(key, 'key_value', str)
 		return self.c.execute(f'SELECT * FROM {self.name} WHERE {key} = ?', (key_value, )).fetchone()
