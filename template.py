@@ -21,16 +21,17 @@ db_create.line('cars', 'model, year_of_release', ('hyundai tucson', 2022))
 #name = update(FileName, table_name, key_name)
 db_update = update('data.db', 'cars', 'model')
 
-#use the update.intvar function to update the variable in the database (int, float)
-#update.intvar(key_value, variable_name, mode, change)
-db_update.intvar('hyundai tucson', 'year_of_release', '+', 2) #adding 2 to the variable
-db_update.intvar('hyundai tucson', 'year_of_release', '-', 2) #subtracting 2 from a variable
-db_update.intvar('hyundai tucson', 'year_of_release', '/', 'gdgdg') #dividing a variable by 2
-db_update.intvar('hyundai tucson', 'year_of_release', '*', 2) #multiplying a variable by 2
-db_update.intvar('hyundai tucson', 'year_of_release', 'set', 2000) #setting a new variable value
-#use the update.charvar function to update the variable in the database (string)
-#update.charvar(key_value, variable_name, change)
-db_update.charvar('hyundai tucson', 'model', 'hyundai solaris')
+#use the update.var.Operation function method to update the variable in the database (int, float)
+#update.var(key_value, variable_name, mode).add(change)
+db_update.var('hyundai tucson', 'year_of_release').add(2) #adding 2 to the variable
+db_update.var('hyundai tucson', 'year_of_release').sub(2) #subtracting 2 from a variable
+db_update.var('hyundai tucson', 'year_of_release').dev(2) #dividing a variable by 2
+db_update.var('hyundai tucson', 'year_of_release').multi(2) #multiplying a variable by 2
+db_update.var('hyundai tucson', 'year_of_release').set(2022) #setting a new variable value
+
+#use the update.var.set function method to update the variable in the database (string)
+#update.var(key_value, variable_name).set(change)
+db_update.var('hyundai tucson', 'model').set('hyundai solaris')
 
 #get Class
 
