@@ -28,7 +28,6 @@ db_update.intvar('hyundai tucson', 'year_of_release', '-', 2) #subtracting 2 fro
 db_update.intvar('hyundai tucson', 'year_of_release', '/', 2) #dividing a variable by 2
 db_update.intvar('hyundai tucson', 'year_of_release', '*', 2) #multiplying a variable by 2
 db_update.intvar('hyundai tucson', 'year_of_release', 'set', 2000) #setting a new variable value
-
 #use the update.charvar function to update the variable in the database (string)
 #update.charvar(key_value, variable_name, change)
 db_update.charvar('hyundai tucson', 'model', 'hyundai solaris')
