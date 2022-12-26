@@ -12,6 +12,9 @@ class create:
 		self.c.execute(f'''CREATE TABLE {name}
 			({key} PRIMARY KEY, {settings})''')
 	def line(self, name, variable, values):
+		if name is None: raise ValueError('TableName is NoneType!')
+		if variable is None: raise ValueError('Variable is NoneType!')
+		if None in values: raise ValueError('Values have NoneType object!')
 		args = variable.split(', ')
 		val = ''
 		for i in range(len(args)):
@@ -29,9 +32,11 @@ class Reference:
 		self.var = variable_name
 	def variable_type(self_ref):
 		var = self_ref.update_ref.c.execute(f'SELECT {self_ref.var} FROM {self_ref.update_ref.table_name} WHERE {self_ref.update_ref.key} = ?', (self_ref.key_val, )).fetchone()
+		if var is None: raise ValueError(f'{self_ref.var} is NoneType!')
 		return type(var[0])
 	def updatevalue(self, oper, change):
 		assert_type(change, 'change', self.variable_type(self))
+		if change is None: raise ValueError(f'change is NoneType!')
 		if oper in ('*', '+', '/', '-'):
 			self.update_ref.c.execute(f'UPDATE {self.update_ref.table_name} SET {self.var} = {self.var} {oper} ? WHERE {self.update_ref.key} = ?', (change, self.key_val))
 		elif oper == 'set':
