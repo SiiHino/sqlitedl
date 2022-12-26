@@ -15,6 +15,7 @@ class create:
 		if name is None: raise ValueError('TableName is NoneType!')
 		if variable is None: raise ValueError('Variable is NoneType!')
 		if None in values: raise ValueError('Values have NoneType object!')
+		
 		args = variable.split(', ')
 		val = ''
 		for i in range(len(args)):
