@@ -42,7 +42,7 @@ class Reference:
 		self.updatevalue('+', change)
 	def sub(self, change):
 		self.updatevalue('-', change)
-	def multi(self, multiply):
+	def mult(self, multiply):
 		self.updatevalue('*', multiply)
 	def div(self, divider):
 		self.updatevalue('/', divider)

@@ -25,8 +25,8 @@ db_update = update('data.db', 'cars', 'model')
 #update.var(key_value, variable_name, mode).add(change)
 db_update.var('hyundai tucson', 'year_of_release').add(2) #adding 2 to the variable
 db_update.var('hyundai tucson', 'year_of_release').sub(2) #subtracting 2 from a variable
-db_update.var('hyundai tucson', 'year_of_release').dev(2) #dividing a variable by 2
-db_update.var('hyundai tucson', 'year_of_release').multi(2) #multiplying a variable by 2
+db_update.var('hyundai tucson', 'year_of_release').div(2) #dividing a variable by 2
+db_update.var('hyundai tucson', 'year_of_release').mult('govno') #multiplying a variable by 2
 db_update.var('hyundai tucson', 'year_of_release').set(2022) #setting a new variable value
 
 #use the update.var.set function method to update the variable in the database (string)
