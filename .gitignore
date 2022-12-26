@@ -8,3 +8,4 @@ sqlitedl.egg-info/PKG-INFO
 sqlitedl.egg-info/SOURCES.txt
 sqlitedl.egg-info/top_level.txt
 data.db
+dist/sqlitedl-1.2.1.tar.gz
