@@ -25,20 +25,11 @@ class update:
 		self.name = name
 		self.key = key
 	def intvar(self, key, variable, mode, change):
-		if mode == '+':
-			self.c.execute(f'UPDATE {self.name} SET {variable} += ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
-		elif mode == '-':
-			self.c.execute(f'UPDATE {self.name} SET {variable} -= ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
-		elif mode == '/':
-			self.c.execute(f'UPDATE {self.name} SET {variable} = {variable} / ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
-		elif mode == '*':
-			self.c.execute(f'UPDATE {self.name} SET {variable} = {variable} * ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
-		elif mode == 'set':
+		if mode == 'set':
 			self.c.execute(f'UPDATE {self.name} SET {variable} = ? WHERE {self.key} = ?', (change, key))
+			self.conn.commit()
+		else:
+			self.c.execute(f'UPDATE {self.name} SET {variable} {mode}= ? WHERE {self.key} = ?', (change, key))
 			self.conn.commit()
 	def charvar(self, key, variable, change):
 		self.c.execute(f'UPDATE {self.name} SET {variable} = ? WHERE {self.key} = ?', (change, key))
