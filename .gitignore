@@ -1,3 +1,9 @@
 
 setup.py
 setup.cfg
+dist/sqlitedl-1.2.tar.gz
+sqlitedl.egg-info/dependency_links.txt
+sqlitedl.egg-info/not-zip-safe
+sqlitedl.egg-info/PKG-INFO
+sqlitedl.egg-info/SOURCES.txt
+sqlitedl.egg-info/top_level.txt
