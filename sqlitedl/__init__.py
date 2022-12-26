@@ -6,7 +6,7 @@ class create:
 		self.c = self.conn.cursor()
 	def db(self, name, key, settings):
 		self.c.execute(f'''CREATE TABLE IF NOT EXISTS {name}
-			({key} INTEGER PRIMARY KEY, {settings})''')
+			({key} PRIMARY KEY, {settings})''')
 	def line(self, name, variable, values):
 		args = variable.split(', ')
 		val = ''
@@ -27,13 +27,9 @@ class update:
 	def intvar(self, key, variable, mode, change):
 		if mode == 'set':
 			self.c.execute(f'UPDATE {self.name} SET {variable} = ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
-		elif mode == ('+' or '-'):
-			self.c.execute(f'UPDATE {self.name} SET {variable} {mode}= ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
-		elif mode == ('*' or '/'):
+		elif mode == ('*' or '/' or '+' or '-'):
 			self.c.execute(f'UPDATE {self.name} SET {variable} = {variable} {mode} ? WHERE {self.key} = ?', (change, key))
-			self.conn.commit()
+		self.conn.commit()
 	def charvar(self, key, variable, change):
 		self.c.execute(f'UPDATE {self.name} SET {variable} = ? WHERE {self.key} = ?', (change, key))
 		self.conn.commit()
